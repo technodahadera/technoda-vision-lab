@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="תחנת התנסות בזוגות בבדיקת חדות ראייה בלוח סנלן בעברית, כחלק מהמקרה של רוני.">
+<title>בדיקת חדות ראייה | טכנודע</title>
+<style>
+:root{color-scheme:light;--ink:#14282d;--muted:#4b6465;--teal:#0c5652;--bg:#eef5f4;--paper:#fff;--line:#cfdfdc;--soft:#dcefeb;--green:#155c47;--red:#9b3932;font-family:Rubik,Arial,sans-serif}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);line-height:1.5} button,select{font:inherit} button,select,a{touch-action:manipulation} :focus-visible{outline:3px solid #ad6120;outline-offset:3px}
+header{background:#123c3d;color:white;padding:1.35rem max(1.1rem,calc((100vw - 70rem)/2));border-block-end:4px solid #68c3ad} header p{margin:0;color:#bde6dc;font-size:.94rem;font-weight:700}h1{font-size:clamp(1.75rem,4vw,2.65rem);line-height:1.15;margin:.2rem 0 .35rem}header span{display:block;color:#e9f7f3}
+main{max-width:72rem;margin:auto;padding:1.35rem 1rem 2.5rem}a{color:var(--teal);font-weight:700;text-underline-offset:.22em}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin:0 0 1rem}
+.steps button{padding:.62rem .4rem;border:1px solid var(--line);border-radius:.55rem;background:var(--paper);color:var(--teal);font-weight:700}
+.steps button[aria-current="step"]{background:var(--teal);border-color:var(--teal);color:white}
+button{cursor:pointer}button:disabled{cursor:default;opacity:.5}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(14rem,19rem);gap:1rem;align-items:start}
+.card{border:1px solid var(--line);background:var(--paper);border-radius:.85rem;padding:clamp(.9rem,2.3vw,1.5rem);min-width:0}
+aside{background:#e4f0ee!important}h2,h3{line-height:1.22;margin:0 0 .5rem}h2{font-size:1.48rem}h3{font-size:1.12rem}
+p{margin:.45rem 0 .8rem}.muted{color:var(--muted)} .instruction{padding:.65rem .8rem;background:var(--soft);border-inline-start:4px solid #409a88;border-radius:.35rem}
+aside ul{padding-inline-start:1.25rem;margin:.55rem 0 1rem} aside li{margin:.35rem 0}
+.roles{display:grid;gap:.65rem}.roles strong{display:block}
+.legend{display:flex;gap:.65rem;flex-wrap:wrap;color:var(--muted);margin:.85rem 0 .65rem;font-size:.9rem}
+.legend span{display:inline-flex;align-items:center;gap:.25rem}.dot{display:inline-block;width:.85em;height:.85em;border-radius:50%;border:1px solid #708684}.dot.yes{background:#398c71;border:0}.dot.no{background:#bb635a;border:0}
+.row{display:grid;grid-template-columns:3.5rem minmax(0,1fr) 3.05rem;align-items:start;gap:.35rem;padding:.37rem 0;border-top:1px solid #e4eeec}
+.row-label,.row-score{align-self:center;text-align:center;font-variant-numeric:tabular-nums}.row-label{font-weight:700}.row-score{font-size:.9rem;color:var(--muted)}
+.letters{display:flex;gap:.28rem;flex-wrap:wrap}
+.letter{min-width:2.7rem;min-height:2.65rem;border:1px solid #afc5c1;border-radius:.45rem;background:#f5f9f8;color:var(--ink);font-size:1.12rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:.21rem;padding:.2rem .35rem}
+.letter small{font-size:.72rem;min-width:.75ch;color:var(--muted)}.letter[data-state="1"]{background:#e0f2ea;border-color:#70a995;color:var(--green)}.letter[data-state="2"]{background:#fae9e6;border-color:#d29a93;color:var(--red)}.letter[data-state="1"] small,.letter[data-state="2"] small{color:inherit}
+.bottom{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.65rem;margin-top:1.1rem}
+.primary,.secondary{padding:.6rem .9rem;border-radius:.5rem;font-weight:700;border:1px solid var(--teal)}
+.primary{color:white;background:var(--teal)}.secondary{color:var(--teal);background:#fff}
+.observation{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;margin-top:.9rem}.observation label{font-weight:700}
+select{border:1px solid #9bb9b4;border-radius:.45rem;color:var(--ink);padding:.38rem;background:#fff}
+.error{color:#923227;margin:.5rem 0 0;font-weight:700}.results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;margin:.9rem 0}
+.result{padding:.8rem;border:1px solid var(--line);background:#f5f9f8;border-radius:.55rem}.result p{margin:.25rem 0}.score{font-weight:700}
+.case{margin-top:1.15rem;padding-top:1rem;border-top:1px solid var(--line)}.case details{border:1px solid var(--line);border-radius:.55rem;padding:.65rem .8rem;margin-top:.6rem}.case summary{color:var(--teal);cursor:pointer;font-weight:700}.case details p{margin:.5rem 0 .15rem}.case .question{font-weight:700}
+[hidden]{display:none!important}
+@media(max-width:800px){.layout{grid-template-columns:1fr}aside{grid-row:1}.roles{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.row{grid-template-columns:2.75rem minmax(0,1fr) 2.55rem}.letter{min-width:2.5rem}.results,.roles{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <p>טכנודע · מדעי המוח</p>
+  <h1>בדיקת חדות ראייה</h1>
+  <span>עובדים בזוגות וממשיכים לחקירת המקרה של רוני.</span>
+</header>
+<main>
+  <nav class="steps" aria-label="שלבי ההתנסות">
+    <button type="button" data-tab="right" aria-current="step">עין ימין</button>
+    <button type="button" data-tab="left">עין שמאל</button>
+    <button type="button" data-tab="summary" disabled>סיכום ורוני</button>
+  </nav>
+  <div class="layout">
+    <section class="card" id="check" aria-labelledby="heading">
+      <h2 id="heading" tabindex="-1">בודקים את עין ימין</h2>
+      <p class="instruction" id="cover"></p>
+      <p>הצביעו על אות בלוח המודפס. הנבדק קורא, והבודק לוחץ על אותה אות כאן. אפשר להתחיל מלמעלה ולעצור בשורה שבה כבר קשה להמשיך.</p>
+      <div class="legend" aria-label="מקרא מצבי האות">
+        <span><i class="dot"></i> לא נבדקה</span><span><i class="dot yes"></i> זוהתה</span><span><i class="dot no"></i> לא זוהתה</span>
+      </div>
+      <p class="muted">כל לחיצה מחליפה מצב: ✓ זוהתה, × לא זוהתה, ואז חזרה ללא סימון.</p>
+      <div id="chart" aria-label="שורות לוח סנלן"></div>
+      <div class="observation">
+        <label for="appearance">איך האותיות נראו לפי דיווח הנבדק?</label>
+        <select id="appearance">
+          <option value="">לא נרשם</option><option value="חדות">חדות</option><option value="מטושטשות">מטושטשות</option><option value="כפולות">כפולות</option><option value="משתנה בין שורות">משתנה בין שורות</option>
+        </select>
+      </div>
+      <div class="bottom"><span id="progress" class="muted" aria-live="polite"></span><button class="primary" type="button" id="next"></button></div>
+      <p class="error" id="error" role="alert" hidden></p>
+    </section>
+    <section class="card" id="summary" aria-labelledby="summary-title" hidden>
+      <h2 id="summary-title" tabindex="-1">סיכום ההתנסות</h2>
+      <p>יעד התרגול הוא זיהוי של לפחות 5 מתוך 9 אותיות בשורה האחרונה, בכל עין בנפרד.</p>
+      <div class="results" id="results"></div>
+      <p id="overall" class="instruction"></p>
+      <p class="muted">התוצאה מתארת את הזיהוי בלוח הכיתתי בלבד. הלוח הלימודי אינו כלי אבחון רפואי.</p>
+      <div class="case">
+        <h3>חוזרים לרוני</h3>
+        <p>בתרחיש הלימודי, גם רוני זיהתה היטב את האותיות הקטנות בשתי העיניים. היא עדיין סיפרה שבעין ימין הראייה נראית מטושטשת והאדום נראה דהוי.</p>
+        <p class="question">מה בדק הלוח, ואיזה מידע חסר כדי להבין את התלונה של רוני?</p>
+        <details><summary>חושפים אחרי הדיון</summary><p>הלוח בודק זיהוי פרטים קטנים בתנאים קבועים. במקרה של רוני, השוואת הצבעים הראתה הבדל בין העיניים. בהמשך, ה־MRI מיקם את הפגיעה בעצב הראייה הימני.</p></details>
+      </div>
+      <div class="bottom">
+        <button class="primary" id="swap" type="button">מחליפים תפקידים ומתחילים מחדש</button>
+        <button class="secondary" data-tab="left" type="button">חזרה לתיקון הסימונים</button>
+      </div>
+    </section>
+    <aside class="card" aria-labelledby="prep-title">
+      <h3 id="prep-title">הכנת העמדה</h3>
+      <ul>
+        <li><a id="pdf-link" href="https://drive.google.com/file/d/17nvGilPZnqRIlkJTH5oeCtJCkc1YJt0R/view?usp=drivesdk" target="_blank" rel="noopener">לוח סנלן A3 להדפסה</a> בגודל בפועל, 100%.</li>
+        <li>תולים בגובה העיניים, במקום מואר. מסמנים <strong>3 מטרים</strong> מהלוח.</li>
+        <li>מי שמרכיב משקפיים לראייה מרחוק נשאר איתם בכל הבדיקה.</li>
+        <li>משתמשים בכיסוי אטום לעין, בלי ללחוץ עליה.</li>
+      </ul>
+      <div class="roles">
+        <div><strong>הנבדק</strong> קורא מהלוח שעל הקיר.</div>
+        <div><strong>הבודק</strong> מחזיק את המסך מולו ומתעד. אין צורך להזין שמות.</div>
+      </div>
+    </aside>
+  </div>
+</main>
+<script>
+'use strict';
+
+const rows = [
+  ['6/60', 'ש'],
+  ['6/36', 'כ ח'],
+  ['6/24', 'ד מ ס'],
+  ['6/18', 'א ה ט ש'],
+  ['6/15', 'ח ס נ פ כ'],
+  ['6/12', 'ע ת ד א מ ה'],
+  ['6/9', 'ט צ ש פ ח ר ס'],
+  ['6/7.5', 'כ מ א ע ד ה ת נ'],
+  ['6/6', 'ס ח ר כ פ ש צ ע א'],
+].map(([label, letters]) => ({label, letters: letters.split(' ')}));
+
+const eyes = {right: 'ימין', left: 'שמאל'};
+const emptyEye = () => ({marks: rows.map(row => row.letters.map(() => 0)), appearance: ''});
+const statusLabels = ['לא נבדקה', 'זוהתה', 'לא זוהתה'];
+const symbols = ['·', '✓', '×'];
+const byId = id => document.getElementById(id);
+const chart = byId('chart');
+const appearance = byId('appearance');
+const error = byId('error');
+const navigation = [...document.querySelectorAll('nav [data-tab]')];
+let data = {right: emptyEye(), left: emptyEye()};
+let stage = 'right';
+let rowScores = [];
+
+function count(marks) {
+  return {correct: marks.filter(mark => mark === 1).length, checked: marks.filter(Boolean).length, total: marks.length};
+}
+
+function assessedEye(eye) {
+  return data[eye].marks.some(marks => marks.every(Boolean));
+}
+
+function updateNavigation() {
+  for (const button of navigation) {
+    if (button.dataset.tab === stage) button.setAttribute('aria-current', 'step');
+    else button.removeAttribute('aria-current');
+  }
+  navigation[2].disabled = !assessedEye('right') || !assessedEye('left');
+}
+
+function updateLetter(button, letter, rowLabel, state) {
+  button.dataset.state = state;
+  button.lastElementChild.textContent = symbols[state];
+  button.setAttribute('aria-label', `אות ${letter}, שורה ${rowLabel}, ${statusLabels[state]}`);
+}
+
+function updateProgress() {
+  const totals = data[stage].marks.map(count);
+  totals.forEach((entry, index) => {
+    const score = rowScores[index];
+    score.textContent = entry.checked ? `${entry.correct}/${entry.total}${entry.checked < entry.total ? '*' : ''}` : '—';
+    score.setAttribute('aria-label', `${entry.correct} זוהו נכון, ${entry.checked} נבדקו, מתוך ${entry.total}`);
+    score.title = entry.checked < entry.total ? 'השורה טרם נבדקה במלואה' : 'השורה נבדקה במלואה';
+  });
+  const checked = totals.reduce((sum, entry) => sum + entry.checked, 0);
+  byId('progress').textContent = checked ? `${checked} אותיות תועדו. * שורה שנבדקה חלקית.` : 'עדיין אין סימונים בעין זו.';
+  if (assessedEye(stage)) error.hidden = true;
+  updateNavigation();
+}
+
+function renderEye() {
+  const opposite = stage === 'right' ? 'שמאל' : 'ימין';
+  byId('heading').textContent = `בודקים את עין ${eyes[stage]}`;
+  byId('cover').textContent = `מכסים את עין ${opposite}. עין ${eyes[stage]} נשארת פתוחה. משקפיים לראייה מרחוק נשארים על הפנים.`;
+  byId('next').textContent = stage === 'right' ? 'ממשיכים לעין שמאל' : 'מציגים סיכום';
+  appearance.value = data[stage].appearance;
+  chart.replaceChildren();
+  rowScores = [];
+  for (const [rowIndex, row] of rows.entries()) {
+    const group = document.createElement('div');
+    group.className = 'row';
+    const label = document.createElement('bdi');
+    label.className = 'row-label';
+    label.textContent = row.label;
+    const letters = document.createElement('div');
+    letters.className = 'letters';
+    for (const [letterIndex, letter] of row.letters.entries()) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'letter';
+      button.append(document.createTextNode(letter));
+      const symbol = document.createElement('small');
+      symbol.setAttribute('aria-hidden', 'true');
+      button.append(symbol);
+      updateLetter(button, letter, row.label, data[stage].marks[rowIndex][letterIndex]);
+      button.addEventListener('click', () => {
+        const marks = data[stage].marks[rowIndex];
+        marks[letterIndex] = (marks[letterIndex] + 1) % statusLabels.length;
+        updateLetter(button, letter, row.label, marks[letterIndex]);
+        updateProgress();
+      });
+      letters.append(button);
+    }
+    const score = document.createElement('bdi');
+    score.className = 'row-score';
+    rowScores.push(score);
+    group.append(label, letters, score);
+    chart.append(group);
+  }
+  updateProgress();
+}
+
+function renderSummary() {
+  const cards = byId('results');
+  cards.replaceChildren();
+  const practice = {};
+  for (const [eye, name] of Object.entries(eyes)) {
+    const eyeData = data[eye];
+    const stats = eyeData.marks.map(count);
+    const best = stats.findLastIndex(line => line.checked === line.total && line.correct > line.total / 2);
+    const last = stats.at(-1);
+    practice[eye] = last.checked < last.total ? 'incomplete' : (last.correct >= 5 ? 'met' : 'below');
+    const card = document.createElement('article');
+    card.className = 'result';
+    const heading = document.createElement('h3');
+    heading.textContent = `עין ${name}`;
+    const score = document.createElement('p');
+    score.className = 'score';
+    if (best >= 0) {
+      score.append('השורה הקטנה ביותר שבה זוהה רוב האותיות: ');
+      const value = document.createElement('bdi');
+      value.textContent = rows[best].label;
+      score.append(value, ` (${stats[best].correct} מתוך ${stats[best].total}).`);
+    } else {
+      score.textContent = 'בשורות שנבדקו במלואן טרם זוהה רוב האותיות.';
+    }
+    const goal = document.createElement('p');
+    goal.textContent = {
+      incomplete: 'השורה האחרונה טרם נבדקה במלואה.',
+      met: 'יעד התרגול הושג בעין זו.',
+      below: 'היעד בשורה האחרונה טרם הושג בעין זו.',
+    }[practice[eye]];
+    card.append(heading, score, goal);
+    if (eyeData.appearance) {
+      const note = document.createElement('p');
+      note.textContent = `דיווח הנבדק: ${eyeData.appearance}.`;
+      card.append(note);
+    }
+    cards.append(card);
+  }
+  const entries = Object.values(practice);
+  byId('overall').textContent = entries.every(value => value === 'met')
+    ? 'בשתי העיניים זוהה רוב האותיות בשורה האחרונה, בתנאי ההתנסות.'
+    : entries.includes('incomplete')
+      ? 'אפשר לחזור לבדיקה ולהשלים את השורה האחרונה. הסיכום כבר מציג את מה שנרשם עד כה.'
+      : 'לפחות באחת העיניים היעד טרם הושג. אפשר לחזור למדידה עם המדריך ולוודא את המרחק ואת תנאי הבדיקה.';
+}
+
+function openStage(target, focus = true) {
+  if (target === 'summary' && (!assessedEye('right') || !assessedEye('left'))) return;
+  stage = target;
+  error.hidden = true;
+  byId('check').hidden = stage === 'summary';
+  byId('summary').hidden = stage !== 'summary';
+  if (stage === 'summary') renderSummary();
+  else renderEye();
+  updateNavigation();
+  if (focus) byId(stage === 'summary' ? 'summary-title' : 'heading').focus();
+}
+
+document.querySelectorAll('[data-tab]').forEach(button => {
+  button.addEventListener('click', () => openStage(button.dataset.tab));
+});
+appearance.addEventListener('change', () => { data[stage].appearance = appearance.value; });
+byId('next').addEventListener('click', () => {
+  if (stage === 'right' && assessedEye('right')) {
+    openStage('left');
+  } else if (stage === 'left' && assessedEye('right') && assessedEye('left')) {
+    openStage('summary');
+  } else {
+    const missing = !assessedEye(stage) ? eyes[stage] : eyes.right;
+    error.textContent = `כדי להמשיך, סמנו את כל האותיות שנבדקו בשורה אחת לפחות בעין ${missing}.`;
+    error.hidden = false;
+  }
+});
+byId('swap').addEventListener('click', () => {
+  data = {right: emptyEye(), left: emptyEye()};
+  byId('summary').querySelector('details').open = false;
+  openStage('right');
+});
+openStage('right', false);
+</script>
+</body>
+</html>
